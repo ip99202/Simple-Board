@@ -1,0 +1,17 @@
+{
+  "name": "board-create",
+  "version": "1.0.0",
+  "description": "",
+  "main": "main.js",
+  "scripts": {
+    "serve": "supervisor main.js"
+  },
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "dotenv": "^8.2.0",
+    "express": "^4.17.1",
+    "mongoose": "^5.7.7",
+    "mongoose-auto-increment": "^5.0.1"
+  }
+}
