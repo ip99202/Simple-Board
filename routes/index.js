@@ -18,12 +18,22 @@ module.exports = function(app) {
 
     //delete board
     app.delete('/api/boards/:board_id', function(req, res) {
-        res.end();
+        Board.remove({_id: req.params.board_id}, function(err, output) {
+            if(err){
+                return res.status(500).json({error: "database failure"});
+            }
+            res.status(204).end();
+        })
     });
 
     //get all board
     app.get('/api/boards', function(req, res) {
-        res.end();
+        Board.find(function(err, board) {
+            if(err){
+                return res.status(500).send({err: "database failure"});
+            }
+            res.json(board);
+        })
     });
 
     //post post
