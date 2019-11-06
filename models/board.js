@@ -6,5 +6,6 @@ let boardSchema = new Schema({
     title: String
 });
 
+
 boardSchema.plugin(autoIncrement.plugin, 'board')
 module.exports = mongoose.model('board', boardSchema);
