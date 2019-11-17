@@ -2,13 +2,13 @@
     <v-card tile>
       <v-row>
         <v-col class="d-flex flex-row-reverse">
-          <v-btn to="/write">write</v-btn>
+          <v-btn :to="'/write/'+curid">write</v-btn>
         </v-col>
       </v-row>
     <v-list>
       <v-subheader>{{ curid }}</v-subheader>
       <v-list-item-group>
-        <v-list-item v-for="post in posts" :key="post._id" @click="go(post._id)">
+        <v-list-item v-for="post in posts" :key="post._id" @click="go(post._id, post.board)">
             <v-list-item-content>
                 <v-list-item-title>{{post.title}}</v-list-item-title>
             </v-list-item-content>
@@ -35,9 +35,9 @@ export default {
         }
     },
     methods: {
-    go(post_id) {
+    go(post_id, board) {
       this.$router.push({
-        path: '/posts/' + post_id   
+        path: '/posts/' + post_id + '/' + board
       }),
       console.log(post_id)
     }

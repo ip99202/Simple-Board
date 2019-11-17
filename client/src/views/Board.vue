@@ -23,7 +23,7 @@ export default {
   methods: {
     read(board_id) {
       this.$router.push({
-        path: 'board/' + board_id        
+        path: '/board/' + board_id        
       })
     }
   },

@@ -25,20 +25,24 @@ import axios from 'axios'
 export default {
     data() {
         return {
+            board: "",
             title: "",
             content: "",
             author: ""
         }
     },
-    method: {
+    methods: {
         writeClick() {
-            axios.post("/api/boards/board_id", {
+            axios.post("/api/boards/" + this.$route.params.board_id, {
+                board: this.$route.params.board_id,
                 title: this.title,
                 content: this.content,
                 author: this.author
             })
             .then((res) => {
-                this.$router.push('')
+                this.$router.push({
+                    path: `/board/${this.$route.params.board_id}`
+                })
             })
             .catch((err) => {
                 console.log(err)

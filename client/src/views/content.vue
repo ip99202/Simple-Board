@@ -1,51 +1,68 @@
 <template>
-    <v-container>
-        <r-row>
-            <v-col>
-                <v-card v-if="!iserror" :loading="loading_swc">
-                    <v-card-title>{{post.title}}</v-card-title>
-                    <v-card-subtitle>{{post.author}}</v-card-subtitle>
-                    <v-card-content>{{post.content}}</v-card-content>
-                </v-card>
-                <v-card v-else>
-                    <v-card-content>
-                        게시글이 없습니다.
-                    </v-card-content>
-                </v-card>
-            </v-col>
-        </r-row>
-    </v-container>
+  <v-container>
+    <v-row>
+      <v-col class="d-flex-row-reverse">
+        <v-btn @click="deleteClick">delete</v-btn>
+      </v-col>
+    </v-row>
+    <v-row>
+      <v-col>
+        <v-card v-if="!iserror" :loading="loading_swc">
+          <v-card-title>{{post.title}}</v-card-title>
+          <v-card-subtitle>{{post.author}}</v-card-subtitle>
+          <v-card-text>{{post.content}}</v-card-text>
+        </v-card>
+        <v-card v-else>
+          <v-card-text>게시글이 없습니다.</v-card-text>
+        </v-card>
+      </v-col>
+    </v-row>
+  </v-container>
 </template>
 
 <style scoped>
 </style>
 
 <script>
-import axios from 'axios'
+import axios from "axios";
 
 export default {
-    data() {
-        return {
-            post: {
-                title: "",
-                content: "",
-                author: ""
-            },
-            iserror: false,
-            loading_swc: true
+  data() {
+    return {
+      post: {
+        title: "",
+        content: "",
+        author: ""
+      },
+      iserror: false,
+      loading_swc: true
+    };
+  },
+  mounted() {
+    axios
+      .get("/api/posts/" + this.$route.params.post_id)
+      .then(res => {
+        this.post = res.data;
+        this.loading_swc = false;
+        console.log(res.data);
+      })
+      .catch(err => {
+        this.iserror = true;
+        console.log(err);
+      });
+  },
+  methods: {
+        deleteClick() {
+            axios.delete(`/api/posts/${this.$route.params.post_id}`)
+            .then((res) => {
+                this.$router.push({
+                    path: `/board/${this.$route.params.board_id}`
+                })
+            })
+            .catch((err) => {
+                console.log(err)
+            })
         }
-    },
-    mounted() {
-        axios.get("/api/posts/" + this.$route.params.post_id)
-        .then((res) => {
-            this.post = res.data
-            this.loading_swc = false
-            console.log(res.data)
-        })
-        .catch((err) => {
-            this.iserror = true
-            console.log(err)
-        })
     }
-}
+};
 </script>
