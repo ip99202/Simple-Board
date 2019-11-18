@@ -2,10 +2,10 @@
   <v-app>
     <v-content>
       <v-container>
-        <h2 class="title ml-4 mt-5">{{ this.$route.params.board_title }}</h2>
+        <h2 class="title">{{ this.$route.params.board_title }}</h2>
         <v-row>
           <v-col class="d-flex flex-row-reverse">
-            <v-btn :to="'/write/'+curid">write</v-btn>
+            <v-btn :to="'/write/'+curid+'/'+this.$route.params.board_title">write</v-btn>
           </v-col>
         </v-row>
         <v-card tile>
@@ -43,7 +43,7 @@ export default {
   methods: {
     go(post_id, board) {
       this.$router.push({
-        path: "/posts/" + post_id + "/" + board
+        path: "/posts/" + board + "/" + this.$route.params.board_title + "/" + post_id 
       }),
         console.log(post_id);
     }

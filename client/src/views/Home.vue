@@ -1,8 +1,5 @@
 <template>
   <div class="home">
-    
-
-
     <div v-if="ischecked == true">
       <p>{{ hello }}</p>
       <input v-model="hello" />
@@ -26,11 +23,7 @@ export default {
   data() {
     return {
       hello: "hihi",
-      ischecked: true,
-      listdata: [
-        { name: "한장희", grade: 2, etc: "Vue 공부중" },
-        { name: "박건영", grade: 2, etc: "Vue 공부중?" }
-      ]
+      ischecked: true
     };
   },
   methods: {

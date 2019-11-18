@@ -33,6 +33,7 @@ export default {
     },
     methods: {
         writeClick() {
+            console.log(this.$route)
             axios.post("/api/boards/" + this.$route.params.board_id, {
                 board: this.$route.params.board_id,
                 title: this.title,
@@ -40,8 +41,9 @@ export default {
                 author: this.author
             })
             .then((res) => {
+                
                 this.$router.push({
-                    path: `/board/${this.$route.params.board_id}`
+                    path: `/board/${this.$route.params.board_id}/${this.$route.params.board_title}`
                 })
             })
             .catch((err) => {

@@ -11,9 +11,9 @@
           <v-col>
             <v-card v-if="!iserror" :loading="loading_swc">
               <v-card-title>{{post.title}}</v-card-title>
-              <v-card-subtitle>작성자: {{post.author}}</v-card-subtitle>
               <v-card outlined>
-              <v-card-text>{{post.content}}</v-card-text>
+                <v-card-subtitle>작성자: {{post.author}}</v-card-subtitle>
+                <v-card-text>{{post.content}}</v-card-text>
               </v-card>
             </v-card>
             <v-card v-else>
@@ -63,7 +63,7 @@ export default {
         .delete(`/api/posts/${this.$route.params.post_id}`)
         .then(res => {
           this.$router.push({
-            path: `/board/${this.$route.params.board_id}`
+            path: `/board/${this.$route.params.board_id}/${this.$route.params.board_title}`
           });
         })
         .catch(err => {
