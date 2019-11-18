@@ -1,14 +1,7 @@
 <template>
   <div class="home">
-    <img alt="Vue logo" src="../assets/logo.png" />
+    
 
-    <table border="1">
-      <tr v-for="(i,index) in listdata" :key="index">
-        <td>{{ i.name }}</td>
-        <td>{{ i.grade }}</td>
-        <td>{{ i.etc }}</td>
-      </tr>
-    </table>
 
     <div v-if="ischecked == true">
       <p>{{ hello }}</p>
