@@ -4,6 +4,9 @@
       <v-container>
         <h2 class="title">{{ this.$route.params.board_title }}</h2>
         <v-row>
+          <v-col>
+            <v-btn @click="deleteBoard">delete</v-btn>
+          </v-col>
           <v-col class="d-flex flex-row-reverse">
             <v-btn :to="'/write/'+curid+'/'+this.$route.params.board_title">write</v-btn>
           </v-col>
@@ -41,9 +44,26 @@ export default {
     };
   },
   methods: {
+    deleteBoard() {
+      axios.delete(`/api/boards/${this.$route.params.board_id}`)
+      .then(res => {
+        this.$router.push({
+          path: `/board/`
+        })
+      })
+      .catch(err => {
+        console.log(err)
+      })
+    },
     go(post_id, board) {
       this.$router.push({
-        path: "/posts/" + board + "/" + this.$route.params.board_title + "/" + post_id 
+        path:
+          "/posts/" +
+          board +
+          "/" +
+          this.$route.params.board_title +
+          "/" +
+          post_id
       }),
         console.log(post_id);
     }

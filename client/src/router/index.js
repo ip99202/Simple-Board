@@ -1,6 +1,6 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
-import Home from '../views/Home.vue'
+import Home from '../views/Board.vue'
 import read from '../views/post.vue'
 
 Vue.use(VueRouter)
@@ -38,6 +38,11 @@ const routes = [
     path: '/posts/:board_id/:board_title/:post_id/',
     name: 'content',
     component: () => import('../views/content.vue')
+  },
+  {
+    path: '/makeBoard/',
+    name: 'makeBoard',
+    component: () => import('../views/makeBoard.vue')
   }
 ]
 

@@ -2,6 +2,11 @@
   <v-app>
     <v-content>
       <v-container>
+        <v-row>
+          <v-col class="d-flex flex-row-reverse">
+            <v-btn :to="'/makeBoard/'">MakeBoard</v-btn>
+          </v-col>
+        </v-row>
         <v-card class="board" tile>
           <v-list>
             <v-subheader>게시판 목록</v-subheader>
@@ -31,6 +36,9 @@ export default {
     };
   },
   methods: {
+    makeBoard() {
+
+    },
     read(board_id, board_title) {
       this.$router.push({
         path: "/board/" + board_id + "/" + board_title
