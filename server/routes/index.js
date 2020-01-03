@@ -79,6 +79,16 @@ module.exports = function(app) {
         .catch(() => res.json({error}))
     });
 
+    //edit post
+    app.put('/api/posts/:post_id', function(req, res) {
+        Post.findById(req.params.post_id)
+        .then((post) => {
+            if(post) {
+                
+            }
+        })
+    })
+
     //get one post
     app.get('/api/posts/:post_id', function(req, res) {
         Post.findOne()
